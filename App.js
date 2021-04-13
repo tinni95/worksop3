@@ -1,41 +1,59 @@
 import * as React from "react";
-import { View, Text, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { View, Text } from "react-native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { AntDesign } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import Colors from "./constants/colors";
+import HomeScreen from "./screens/HomeScreen";
+import SecondScreen from "./screens/SecondScreen";
+import NewsScreen from "./screens/NewsScreen";
 
-/**
- * TASK 1 : aggiungere icone
- * TASK 2 : aggiungere nuova schermata settings
- */
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-      <Button
-        title={"Go to Second Screen"}
-        onPress={() => navigation.navigate("Second")}
-      />
-    </View>
-  );
-}
-
-function SecondScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Second Screen</Text>
-    </View>
-  );
-}
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: Colors.RED,
+  },
+};
 
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Second" component={SecondScreen} />
+        <Tab.Screen
+          options={{
+            tabBarLabel: "Home",
+            tabBarIcon: ({ color, size }) => (
+              <AntDesign name="home" size={size} color={color} />
+            ),
+          }}
+          name="Home"
+          component={HomeScreen}
+        />
+        <Tab.Screen
+          options={{
+            tabBarLabel: "News",
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="newspaper-o" size={size} color={color} />
+            ),
+          }}
+          name="News"
+          component={NewsScreen}
+        />
+        <Tab.Screen
+          options={{
+            tabBarLabel: "Settings",
+            tabBarIcon: ({ color, size }) => (
+              <Feather name="settings" size={size} color={color} />
+            ),
+          }}
+          name="Second"
+          component={SecondScreen}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
