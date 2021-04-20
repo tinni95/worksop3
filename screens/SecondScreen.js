@@ -1,11 +1,15 @@
 import React from "react";
 
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 
-function SecondScreen() {
+function SecondScreen({ navigation }) {
+  const navigateToNews = () => {
+    navigation.navigate("News");
+  };
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Second Screen</Text>
+      <Button title={"Go to News"} onPress={navigateToNews} />
     </View>
   );
 }
