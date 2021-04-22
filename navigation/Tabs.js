@@ -6,8 +6,8 @@ import { Feather } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import Colors from "../constants/colors";
 import SecondScreen from "../screens/SecondScreen";
-import NewsScreen from "../screens/NewsScreen";
 import HomeStack from "./HomeStack";
+import NewsStack from "./NewsStack";
 
 const MyTheme = {
   ...DefaultTheme,
@@ -41,7 +41,7 @@ function Tabs() {
             ),
           }}
           name="News"
-          component={NewsScreen}
+          component={NewsStack}
         />
         <Tab.Screen
           options={{

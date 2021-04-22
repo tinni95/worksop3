@@ -1,16 +1,17 @@
 import React from "react";
 import { Image, StyleSheet, View, Text } from "react-native";
+import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import colors from "../constants/colors";
 
-function PostCard({ post }) {
+function PostCard({ post, onPress }) {
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={onPress}>
       <Image style={{ height: 200 }} source={{ uri: post.image }} />
       <View style={styles.inner}>
         <Text style={styles.titolo}>{post.titolo}</Text>
         <Text style={styles.descrizione}>{post.descrizione}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
 

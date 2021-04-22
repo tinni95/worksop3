@@ -13,7 +13,7 @@ import PostCard from "../components/PostCard";
 import { GET_POSTS } from "../constants/api";
 import colors from "../constants/colors";
 
-function NewsScreen() {
+function NewsScreen({ navigation }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -33,6 +33,10 @@ function NewsScreen() {
     setLoading(false);
   };
 
+  const navigateToDetail = (post) => {
+    navigation.navigate("NewsDetail",{post:post});
+  }
+
   if (loading == true) {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -44,7 +48,7 @@ function NewsScreen() {
     <ScrollView contentContainerStyle={{ backgroundColor: "#fbfbfb" }}>
       <Text style={styles.news}>News</Text>
       {posts.map((post) => {
-        return <PostCard key={post.titolo} post={post} />;
+        return <PostCard key={post.titolo} post={post} onPress={ () => navigateToDetail(post)} />;
       })}
     </ScrollView>
   );
